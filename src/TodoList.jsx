@@ -4,7 +4,7 @@ import Todo from "./Todo";
 const TodoList = ({ todos, deleteHandler, completeHandler, isDone }) => {
   return (
     <div className={isDone ? "Done" : "Working"}>
-      <h3>{isDone ? "Done!" : "working!"}</h3>
+      <h3>{isDone ? "Done!" : "Working!"}</h3>
       <div>
         {todos
           .filter((todo) => todo.isDone === isDone)
