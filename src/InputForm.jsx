@@ -20,9 +20,18 @@ const InputForm = ({ setTodos }) => {
     setContents("");
   };
 
+  const inputStyle = {
+    borderRadius: "10px",
+    border: "solid 1px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: "10px",
+  };
+
   return (
     <>
-      <form onSubmit={onSubmitHandler}>
+      <form style={inputStyle} onSubmit={onSubmitHandler}>
         <p>제목</p>
         <input
           type="text"
