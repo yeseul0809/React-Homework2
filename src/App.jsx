@@ -1,35 +1,43 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
+import InputForm from "./InputForm";
+import TodoList from "./TodoList";
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const [todos, setTodos] = useState([]);
+
+  const deleteHandler = (id) => {
+    const deleteTodos = todos.filter((todo) => todo.id !== id);
+    setTodos(deleteTodos);
+  };
+
+  const completeHandler = (id) => {
+    const completeTodos = todos.map((todo) =>
+      todo.id === id ? { ...todo, isDone: !todo.isDone } : todo
+    );
+    setTodos(completeTodos);
+  };
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <h1>My Todo List</h1>
+      <InputForm setTodos={setTodos} />
+      {/* working */}
+      <TodoList
+        todos={todos}
+        deleteHandler={deleteHandler}
+        completeHandler={completeHandler}
+        isDone={false}
+      />
+      {/* done */}
+      <TodoList
+        todos={todos}
+        deleteHandler={deleteHandler}
+        completeHandler={completeHandler}
+        isDone={true}
+      />
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
